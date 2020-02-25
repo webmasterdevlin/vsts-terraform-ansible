@@ -22,13 +22,13 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'build'
 - task: CopyFiles@2
-  displayName: 'Copy Terraform files to artifacts'
+  displayName: 'Copy Terraform files to $(build.artifactstagingdirectory)'
   inputs:
-    SourceFolder: 'iac/terraform/azure'
+    SourceFolder: '$(build.deafaultworkingdirectory)'
     Contents: |
           **/*.war
           iac/**
-    TargetFolder: '$(build.artifactstagingdirectory)/iac/terraform/azure'
+    TargetFolder: '$(build.artifactstagingdirectory)'
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
